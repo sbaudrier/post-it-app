@@ -4,7 +4,6 @@
     <button v-on:click="addCard(index)"> Add Post it</button> 
     <div v-for= "(step, index) in $store.state.step" :key="index">
       <Card ref="card" :step="step" :index="index"/>
-      <button v-on:click="test(index)"> Add </button>   
     </div>
   </div>
 </template>
@@ -27,11 +26,8 @@ export default {
         this.$store.state.step.push({
           titre: this.postItTitle,
           contenue: []
-       })
+        })
       }
-    },
-    test(index) {
-      this.$refs.card.addStep(index)
     }
   }
 }
