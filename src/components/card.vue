@@ -1,8 +1,9 @@
 <template>
-  <div>    
-    <h1> {{ step.titre }}  </h1>
-    <div> {{ step.contenue }} </div>
-    <input type="text" v-model="test"/> 
+  <div>
+    <h1>{{ step.titre }}</h1>
+    <div>{{ step.contenue }}</div>
+    <input type="text" v-model="test" />
+    <button v-on:click="addStep(index)">Add</button>
   </div>
 </template>
 
@@ -10,16 +11,20 @@
 export default {
   data: function () {
     return {
-      test: ""
-    }
+      test: "",
+    };
   },
   methods: {
     addStep(index) {
-      this.$store.state.step[index].contenue.push(this.test)
-    }
+      if (this.test != "") {
+        this.$store.state.step[index].contenue.push(this.test);
+        this.test = "";
+      }
+    },
   },
-  props:{
-      step: Object, index: undefined
-  },  
-}
+  props: {
+    step: Object,
+    index: undefined,
+  },
+};
 </script>
