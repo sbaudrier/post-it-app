@@ -1,14 +1,24 @@
 <template>
-  <div>
+  <div class="card">
     <h1>{{ step.titre }}</h1>
-    <div>{{ step.contenue }}</div>
     <input type="text" v-model="test" />
     <button v-on:click="addStep(index)">Add</button>
+    <div
+      v-for="(ticket, index) in $store.state.step[index].contenue"
+      :key="index"
+    >
+      <Ticket :text="ticket" />
+    </div>
   </div>
 </template>
 
 <script>
+import Ticket from "@/components/Ticket.vue";
+
 export default {
+  components: {
+    Ticket,
+  },
   data: function () {
     return {
       test: "",
@@ -28,3 +38,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.card {
+  margin: 20px;
+}
+</style>
